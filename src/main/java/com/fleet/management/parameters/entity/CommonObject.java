@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fleet.management.security.entity.Auditable;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+
 
 
 @Setter
