@@ -1,6 +1,6 @@
-package com.fleet.managament.accounts.repository;
+package com.fleet.management.accounts.repository;
 
-import com.fleet.managament.accounts.entity.Invoice;
+import com.fleet.management.accounts.entity.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InvoiceRepository extends JpaRepository <Invoice, Long> {

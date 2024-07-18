@@ -1,4 +1,4 @@
-package com.fleet.managament.accounts.entity;
+package com.fleet.management.accounts.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

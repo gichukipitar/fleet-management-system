@@ -1,7 +1,7 @@
-package com.fleet.managament.accounts.controller;
+package com.fleet.management.accounts.controller;
 
-import com.fleet.managament.accounts.entity.Invoice;
-import com.fleet.managament.accounts.services.InvoiceService;
+import com.fleet.management.accounts.entity.Invoice;
+import com.fleet.management.accounts.services.InvoiceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

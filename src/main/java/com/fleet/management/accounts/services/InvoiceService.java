@@ -1,7 +1,7 @@
-package com.fleet.managament.accounts.services;
+package com.fleet.management.accounts.services;
 
-import com.fleet.managament.accounts.entity.Invoice;
-import com.fleet.managament.accounts.repository.InvoiceRepository;
+import com.fleet.management.accounts.entity.Invoice;
+import com.fleet.management.accounts.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
