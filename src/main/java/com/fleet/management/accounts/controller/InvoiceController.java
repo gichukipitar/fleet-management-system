@@ -3,9 +3,7 @@ package com.fleet.management.accounts.controller;
 import com.fleet.management.accounts.entity.Invoice;
 import com.fleet.management.accounts.services.InvoiceService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,10 @@ public class InvoiceController {
         List <Invoice> invoices = invoiceService.findAllInvoices();
         return ResponseEntity.ok(invoices);
 }
-
+@PostMapping("/create/invoice")
+    public ResponseEntity<Invoice> createInvoice(@RequestBody Invoice invoice) {
+        invoiceService.saveInvoice(invoice);
+        return ResponseEntity.ok(invoice);
+    }
 }
+
