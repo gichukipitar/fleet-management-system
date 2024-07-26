@@ -22,9 +22,9 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home").permitAll() // Allow access to home and root
-                        .requestMatchers("/accounts/create/invoice").permitAll() // Allow access to this specific URL
-                        .anyRequest().authenticated() // Require authentication for other URLs
+                        .requestMatchers("/", "/home").permitAll()
+                        .requestMatchers("/accounts/create/invoice").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
