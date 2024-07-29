@@ -1,7 +1,7 @@
 package com.fleet.management.security.controller;
 
 import com.fleet.management.security.entity.Role;
-import com.fleet.management.security.service.RoleService;
+import com.fleet.management.security.service.RoleServiceImpl;
 import com.fleet.management.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,11 +14,11 @@ import java.util.List;
 @RequestMapping("/security")
 public class RoleController {
 
-    private RoleService roleService;
+    private RoleServiceImpl roleService;
     private UserService userService;
 
     @Autowired
-    public RoleController(RoleService roleService) {
+    public RoleController(RoleServiceImpl roleService) {
         this.roleService = roleService;
     }
 
