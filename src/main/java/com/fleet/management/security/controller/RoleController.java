@@ -1,5 +1,7 @@
 package com.fleet.management.security.controller;
 
+import com.fleet.management.exceptions.RoleNotFoundException;
+import com.fleet.management.exceptions.UserNotFoundException;
 import com.fleet.management.security.entity.Role;
 import com.fleet.management.security.service.RoleServiceImpl;
 import com.fleet.management.security.service.UserService;
@@ -43,6 +45,7 @@ public class RoleController {
         Role savedRole = roleService.saveRole(role);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRole);
     }
+
     @DeleteMapping("/role/delete/{id}")
     public ResponseEntity<Void> deleteRole(@PathVariable Long id) {
         boolean deleted = roleService.deleteRole(id);
@@ -50,6 +53,16 @@ public class RoleController {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/role/assign/{userId}/{roleId}")
+    public ResponseEntity<String> assignRoleToUser(@PathVariable Long userId, @PathVariable Long roleId) {
+        try {
+            roleService.assignRoleToUser(userId, roleId);
+            return ResponseEntity.status(HttpStatus.OK).body("Role successfully assigned to user");
+        } catch (UserNotFoundException | RoleNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 }

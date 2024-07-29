@@ -1,5 +1,7 @@
 package com.fleet.management.security.service;
 
+import com.fleet.management.exceptions.RoleNotFoundException;
+import com.fleet.management.exceptions.UserNotFoundException;
 import com.fleet.management.security.entity.Role;
 import com.fleet.management.security.entity.User;
 import com.fleet.management.security.repository.RoleRepository;
@@ -44,7 +46,20 @@ public class RoleServiceImpl implements RoleService {
        }
     }
     //assign role to user
+    @Override
     public void assignRoleToUser(Long userId, Long roleId) {
+        User user = userRepository.findById(userId).
+                orElseThrow(() -> new UserNotFoundException(userId));
+        Role role = roleRepository.findById(roleId).
+                orElseThrow(() -> new RoleNotFoundException(roleId));
+
+        Set<Role> userRoles = user.getRoles();
+        if(userRoles.contains(role)){
+            return;
+        }
+        userRoles.add(role);
+        user.setRoles(userRoles);
+        userRepository.save(user);
 
     }
 

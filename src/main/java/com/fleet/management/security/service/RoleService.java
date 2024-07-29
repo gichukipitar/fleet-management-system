@@ -8,4 +8,7 @@ public interface RoleService {
     List<Role> findAllRoles();
     Role findRoleById(Long roleName);
     Role saveRole(Role role);
+
+    //assign role to user
+    void assignRoleToUser(Long userId, Long roleId);
 }
