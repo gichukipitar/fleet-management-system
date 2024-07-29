@@ -18,15 +18,30 @@ public class RoleService {
     private UserRepository userRepository;
 
     //get all roles
-    public List<Role> findAllRoles(){
+    public List<Role> findAllRoles() {
         return roleRepository.findAll();
     }
+
     //get role by id
-    public Role findRoleById(Long id){
+    public Role findRoleById(Long id) {
         return roleRepository.findById(id).orElse(null);
     }
+
+    //Update Role
+    public Role saveRole(Role role) {
+        return roleRepository.save(role);
+    }
+    //delete by id
+    public boolean deleteRole(Long id) {
+       if (roleRepository.existsById(id)) {
+           roleRepository.deleteById(id);
+           return true;
+       } else {
+           return false;
+       }
+    }
     //assign role to user
-    public void assignRoleToUser(Long userId, Long roleId){
+    public void assignRoleToUser(Long userId, Long roleId) {
         User user = userRepository.findById(userId).orElse(null);
         Role role = roleRepository.findById(roleId).orElse(null);
         assert user != null;
@@ -35,10 +50,19 @@ public class RoleService {
         user.setRoles(userRoles);
         userRepository.save(user);
     }
-    public Set<Role> getUserRoles(User user){
+
+    //Unassign Role to User
+    public void unassignUserRole(Long userId, Long roleId) {
+        User user = userRepository.findById(userId).orElse(null);
+        user.getRoles().removeIf(x -> x.getId() == roleId);
+        userRepository.save(user);
+    }
+
+    public Set<Role> getUserRoles(User user) {
         return user.getRoles();
     }
-    public List<Role> getUserNotRoles(User user){
+
+    public List<Role> getUserNotRoles(User user) {
         return roleRepository.getUserNotRoles(user.getId());
     }
 }
