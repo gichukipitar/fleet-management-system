@@ -85,7 +85,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> getUserNotRoles(User user) {
+    public Set<Role> getUserNotRoles(User user) {
         return roleRepository.getUserNotRoles(user.getId());
     }
 

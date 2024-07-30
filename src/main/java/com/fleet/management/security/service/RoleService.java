@@ -18,5 +18,5 @@ public interface RoleService {
 
     boolean deleteRole(Long id);
     Set<Role> getUserRoles(User user);
-    List<Role> getUserNotRoles(User user);
+    Set<Role> getUserNotRoles(User user);
 }
