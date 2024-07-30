@@ -70,13 +70,11 @@ public class RoleController {
     }
     @PostMapping("/role/unassign/{userId}/{roleId}")
     public ResponseEntity<String> unAssignRoleFromUser(@PathVariable Long userId, @PathVariable Long roleId) {
-        try {
-            roleService.unassignUserRole(userId, roleId);
-            return ResponseEntity.status(HttpStatus.OK).body(
-                    String.format("Role with ID %d successfully unassigned from user with ID %d.", roleId, userId)
-            );
-        } catch (UserNotFoundException | RoleNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        boolean roleRemoved = roleService.unassignUserRole(userId, roleId);
+        if (roleRemoved) {
+            return ResponseEntity.status(HttpStatus.OK).body("Role successfully unassigned from user.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role not found for the user.");
         }
     }
 }
