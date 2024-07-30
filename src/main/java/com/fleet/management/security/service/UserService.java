@@ -8,29 +8,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserService {
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Autowired
-    private UserRepository userRepository;
+
+public interface UserService {
+
 
     //find all users
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
-    }
+    public List<User> findAllUsers();
     //find user by id
-    public User findUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
+    public User findUserById(Long id);
     //delete user
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
+    public void deleteUser(Long id);
     //update user
-    public void saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-    }
+    public void saveUser(User user);
 
 }
