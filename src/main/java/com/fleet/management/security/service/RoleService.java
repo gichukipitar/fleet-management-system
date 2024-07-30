@@ -1,8 +1,10 @@
 package com.fleet.management.security.service;
 
 import com.fleet.management.security.entity.Role;
+import com.fleet.management.security.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RoleService {
     List<Role> findAllRoles();
@@ -15,4 +17,6 @@ public interface RoleService {
     boolean unassignUserRole(Long userId, Long roleId);
 
     boolean deleteRole(Long id);
+    Set<Role> getUserRoles(User user);
+    List<Role> getUserNotRoles(User user);
 }

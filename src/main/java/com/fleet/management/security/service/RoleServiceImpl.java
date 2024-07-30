@@ -45,6 +45,9 @@ public class RoleServiceImpl implements RoleService {
            return false;
        }
     }
+
+
+
     //assign role to user
     @Override
     public void assignRoleToUser(Long userId, Long roleId) {
@@ -75,6 +78,15 @@ public class RoleServiceImpl implements RoleService {
         }
 
         return roleRemoved;
+    }
+    @Override
+    public Set<Role> getUserRoles(User user) {
+        return user.getRoles();
+    }
+
+    @Override
+    public List<Role> getUserNotRoles(User user) {
+        return roleRepository.getUserNotRoles(user.getId());
     }
 
 }
