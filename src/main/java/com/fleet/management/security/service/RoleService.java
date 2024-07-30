@@ -11,4 +11,8 @@ public interface RoleService {
 
     //assign role to user
     void assignRoleToUser(Long userId, Long roleId);
+    //unassign role to user
+    boolean unassignUserRole(Long userId, Long roleId);
+
+    boolean deleteRole(Long id);
 }

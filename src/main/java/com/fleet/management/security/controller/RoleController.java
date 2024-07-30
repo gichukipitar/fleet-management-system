@@ -3,6 +3,7 @@ package com.fleet.management.security.controller;
 import com.fleet.management.exceptions.RoleNotFoundException;
 import com.fleet.management.exceptions.UserNotFoundException;
 import com.fleet.management.security.entity.Role;
+import com.fleet.management.security.service.RoleService;
 import com.fleet.management.security.service.RoleServiceImpl;
 import com.fleet.management.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping("/security")
 public class RoleController {
 
-    private RoleServiceImpl roleService;
+    private RoleService roleService;
     private UserService userService;
 
     @Autowired
@@ -60,7 +61,9 @@ public class RoleController {
     public ResponseEntity<String> assignRoleToUser(@PathVariable Long userId, @PathVariable Long roleId) {
         try {
             roleService.assignRoleToUser(userId, roleId);
-            return ResponseEntity.status(HttpStatus.OK).body("Role successfully assigned to user");
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    String.format("Role with ID %d successfully assigned to user with ID %d.", roleId, userId)
+            );
         } catch (UserNotFoundException | RoleNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

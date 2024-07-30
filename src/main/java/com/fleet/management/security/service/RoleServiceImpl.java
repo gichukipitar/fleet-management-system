@@ -62,19 +62,21 @@ public class RoleServiceImpl implements RoleService {
         userRepository.save(user);
 
     }
-
     //Unassign Role to User
-    public void unassignUserRole(Long userId, Long roleId) {
-        User user = userRepository.findById(userId).orElse(null);
-        user.getRoles().removeIf(x -> x.getId() == roleId);
-        userRepository.save(user);
+    public boolean unassignUserRole(Long userId, Long roleId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+        Role role = roleRepository.findById(roleId)
+                .orElseThrow(() -> new RoleNotFoundException(roleId));
+        Set<Role> userRoles = user.getRoles();
+        boolean roleRemoved = userRoles.remove(role);
+        if (roleRemoved) {
+            userRepository.save(user);
+        }
+
+        return roleRemoved;
     }
 
-    public Set<Role> getUserRoles(User user) {
-        return user.getRoles();
-    }
-
-    public List<Role> getUserNotRoles(User user) {
-        return roleRepository.getUserNotRoles(user.getId());
-    }
 }
+
+
