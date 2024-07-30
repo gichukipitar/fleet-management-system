@@ -11,8 +11,8 @@ import java.util.Set;
 public class UserEditResponse {
     private User user;
     private Set<Role> userRoles;
-    private List<Role> userNotRoles;
-    public UserEditResponse(User user, Set<Role> userRoles, List<Role> userNotRoles) {
+    private Set<Role> userNotRoles;
+    public UserEditResponse(User user, Set<Role> userRoles, Set<Role> userNotRoles) {
         this.user = user;
         this.userRoles = userRoles;
         this.userNotRoles = userNotRoles;

@@ -1,5 +1,6 @@
 package com.fleet.management.security.controller;
 
+import com.fleet.management.security.dtos.UserEditResponse;
 import com.fleet.management.security.entity.Role;
 import com.fleet.management.security.entity.User;
 import com.fleet.management.security.service.RoleService;
@@ -33,11 +34,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
     @GetMapping("/security/user/{op}/{id}")
-    public ResponseEntity<List> editUser(@PathVariable Long id, @PathVariable String op) {
+    public ResponseEntity<UserEditResponse> editUser(@PathVariable Long id, @PathVariable String op) {
         User user = userService.findUserById(id);
         Set<Role> userRoles = roleService.getUserRoles(user);
         Set<Role> userNotRoles = roleService.getUserNotRoles(user);
-
-        return null;
+        UserEditResponse userEditResponse = new UserEditResponse(user, userRoles, userNotRoles);
+        return ResponseEntity.status(HttpStatus.OK).body(userEditResponse);
     }
 }
