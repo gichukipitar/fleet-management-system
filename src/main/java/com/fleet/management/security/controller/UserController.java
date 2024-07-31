@@ -38,7 +38,7 @@ public class UserController {
         UserEditResponse userEditResponse = new UserEditResponse(user, userRoles, userNotRoles);
         return ResponseEntity.status(HttpStatus.OK).body(userEditResponse);
     }
-    @PutMapping("/users/addNew")
+    @PostMapping ("/users/addNew")
     public ResponseEntity<User> addNewUser(@RequestBody User user) {
         userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.OK).body(user);
