@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface CustomAppRepository <T> {
     List<T> findByFieldAndValue(Class <T> entityClass, String fieldName, String value);
-    Page<T> findByQueryWithPagination(Class <T> entityClass, Query query, PageRequest pageRequest);
+    Page<T> findByQueryWithPagination(Class <T> entityClass, Query query, PageRequest pageRequest,
+                                      Pageable pageable);
 
 }
