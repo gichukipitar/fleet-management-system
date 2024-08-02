@@ -1,4 +1,4 @@
-package com.fleet.management.security;
+package com.fleet.management.config;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;

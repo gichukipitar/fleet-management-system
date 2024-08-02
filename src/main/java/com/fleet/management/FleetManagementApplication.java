@@ -1,6 +1,6 @@
 package com.fleet.management;
 
-import com.fleet.management.security.SpringSecurityAuditorAware;
+import com.fleet.management.config.SpringSecurityAuditorAware;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
