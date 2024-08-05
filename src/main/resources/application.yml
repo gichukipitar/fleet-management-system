@@ -1,3 +1,8 @@
+#Local Dev
+server:
+    port: 5022
+    servlet:
+        context-path: /fleet
 spring:
   application:
    name: management
