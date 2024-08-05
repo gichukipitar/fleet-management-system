@@ -7,11 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class UserPrincipal implements UserDetails {
 
     private User user;
-    public UserPrincipal(User user) {
+    public UserPrincipal(Optional<User> user) {
         this.user = user;
     }
     @Override
